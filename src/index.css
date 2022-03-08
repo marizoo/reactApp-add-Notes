@@ -5,3 +5,46 @@
 .dark-mode h1{
     color: white;
 }
+
+
+*,
+*::before,
+*::after,
+body, 
+html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    font-family: 'Poppins', sans-serif; 
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    transition: 0.4s;
+}
+
+a:hover{
+    color: var(--color-brand);
+}
+
+button{
+    cursor: pointer;
+    color: inherit;
+    font-family: inherit;
+}
+
+ul {
+    list-style: none;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+}
+

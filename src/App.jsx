@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import { GlobalStyles } from "./globalStyle/globalStyle";
 import styled from "styled-components";
 import NotesList from "./components/notesList/NotesList";
 import { nanoid } from "nanoid";
@@ -17,11 +16,6 @@ const ScApp = styled.div`
 `;
 
 const App = () => {
-    // const [mainCss, setMainCss] = useState("light");
-    // const toggleTheme = () => {
-    //     setMainCss((currentCss) => (currentCss === "light" ? "dark" : "light"));
-    // };
-
     const [notes, setNotes] = useState([
         {
             id: nanoid(),
@@ -47,6 +41,21 @@ const App = () => {
 
     const [searchText, setSearchText] = useState("");
     const [darkMode, setDarkMode] = useState(false);
+
+    // retrieve from local storage. Parse from a string into JSON
+    useEffect(() => {
+        const savedNotes = JSON.parse(
+            localStorage.getItem("react-notes-app-data")
+        );
+        if (savedNotes) {
+            setNotes(savedNotes);
+        }
+    }, []);
+
+    // save to local storage, made it into a string
+    useEffect(() => {
+        localStorage.setItem("react-notes-app-data", JSON.stringify(notes));
+    }, [notes]);
 
     const addNote = (text) => {
         const date = new Date();
