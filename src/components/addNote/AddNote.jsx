@@ -3,13 +3,18 @@ import { ScAddNote } from "./addNote.styled";
 
 const AddNote = ({ handleAddNote }) => {
     const [noteText, setNoteText] = useState("");
+    const characterLimit = 200;
 
     const handleChange = (ev) => {
-        setNoteText(ev.target.value);
+        if (characterLimit - ev.target.value.length >= 0) {
+            setNoteText(ev.target.value);
+        }
     };
 
     const handleSaveClick = () => {
-        handleAddNote(noteText);
+        if (noteText.trim().length > 0) {
+            handleAddNote(noteText);
+        }
         setNoteText("");
     };
 
@@ -24,7 +29,9 @@ const AddNote = ({ handleAddNote }) => {
                 onChange={handleChange}
             ></textarea>
             <div className="addNoteFooter">
-                <small className="addNoteFooter-chars">200 remaining</small>
+                <small className="addNoteFooter-chars">
+                    {characterLimit - noteText.length} remaining
+                </small>
                 <button
                     onClick={handleSaveClick}
                     className="addNoteFooter-saveBtn"

@@ -51,8 +51,9 @@ const App = () => {
     };
 
     const handleDeleteNote = (id) => {
-        console.log(id);
-        // setNotes(notes.filter((note) => !note.id === id));
+        const newNotes = notes.filter((note) => note.id !== id);
+
+        setNotes(newNotes);
     };
 
     return (
@@ -72,4 +73,4 @@ const App = () => {
 export default App;
 
 // https://www.youtube.com/watch?v=8KB3DHI-QbM&t=35s
-// till min 43.
+// till min

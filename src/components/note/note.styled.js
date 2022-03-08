@@ -8,6 +8,7 @@ export const ScNote = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    white-space: pre-wrap;
 
     .note-text {
     }
@@ -23,5 +24,10 @@ export const ScNote = styled.div`
 
     .noteFooter-deleteIcon {
         cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .noteFooter-deleteIcon:hover {
+        color: gray;
     }
 `;
