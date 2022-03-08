@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ScNote = styled.div`
-    background: var(--color-brand);
+    background: #fef68a;
     border-radius: 10px;
     padding: 1rem;
     min-height: 170px;

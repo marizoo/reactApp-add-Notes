@@ -1,20 +1,26 @@
 import React, { useState } from "react";
+import "./index.css";
 import { GlobalStyles } from "./globalStyle/globalStyle";
 import styled from "styled-components";
 import NotesList from "./components/notesList/NotesList";
 import { nanoid } from "nanoid";
+import Search from "./search/Search";
+import Header from "./header/Header";
 
 const ScApp = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: center; ;
+    align-items: center;
+    width: 100%;
+    max-width: 960px;
+    min-height: 100vh;
 `;
 
 const App = () => {
-    const [mainCss, setMainCss] = useState("light");
-    const toggleTheme = () => {
-        setMainCss((currentCss) => (currentCss === "light" ? "dark" : "light"));
-    };
+    // const [mainCss, setMainCss] = useState("light");
+    // const toggleTheme = () => {
+    //     setMainCss((currentCss) => (currentCss === "light" ? "dark" : "light"));
+    // };
 
     const [notes, setNotes] = useState([
         {
@@ -39,6 +45,9 @@ const App = () => {
         },
     ]);
 
+    const [searchText, setSearchText] = useState("");
+    const [darkMode, setDarkMode] = useState(false);
+
     const addNote = (text) => {
         const date = new Date();
         const newNote = {
@@ -52,25 +61,35 @@ const App = () => {
 
     const handleDeleteNote = (id) => {
         const newNotes = notes.filter((note) => note.id !== id);
-
         setNotes(newNotes);
     };
 
     return (
-        <>
-            <GlobalStyles />
-            <ScApp className={`${mainCss}-theme`}>
+        <div className={`${darkMode && "dark-mode"}`}>
+            {/* <GlobalStyles /> */}
+            {/* <ScApp className={`${mainCss}-theme`}> */}
+            <ScApp>
+                <Header
+                    className={`${darkMode && "dark-mode"}`}
+                    handleToggleDarkMode={setDarkMode}
+                />
+                <Search
+                    onSearchText={searchText}
+                    onSetSearchText={setSearchText}
+                />
                 <NotesList
-                    onNotes={notes}
+                    onNotes={notes.filter((note) =>
+                        note.text.toLowerCase().includes(searchText)
+                    )}
                     onHandleDeleteNote={handleDeleteNote}
                     handleAddNote={addNote}
                 />
             </ScApp>
-        </>
+        </div>
     );
 };
 
 export default App;
 
 // https://www.youtube.com/watch?v=8KB3DHI-QbM&t=35s
-// till min
+// till min 01.07.55;
