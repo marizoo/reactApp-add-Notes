@@ -1,5 +1,6 @@
 ## DESCRIPTION:
-- React Notes App, made with React + styled component.
+- Follow along with Chris Blakely's React class: 
+- a React Notes App, made with React + styled component.
 - Features: 
     - light/dark mode.
     - save & retrieve from local storage

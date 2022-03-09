@@ -99,6 +99,3 @@ const App = () => {
 };
 
 export default App;
-
-// https://www.youtube.com/watch?v=8KB3DHI-QbM&t=35s
-// till min 01.07.55;
